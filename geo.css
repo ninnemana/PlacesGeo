@@ -1,0 +1,40 @@
+#map{
+    width: 80%;
+    height: 500px;
+    border: 2px solid #343434;
+    border-radius: 4px;
+}
+
+input[type=text]{
+    width:70%;
+    margin-bottom:10px;
+}
+
+input[type=submit]{
+    width:10%;
+    margin-bottom:10px;
+    display:none;
+}
+
+table{
+    width: 80%;
+    border-collapse: collapse;
+}
+
+table thead tr th{
+    border-bottom: 2px solid black;
+}
+
+table tbody tr:nth-child(even){
+    background: #ccc;
+}
+
+table tbody tr:nth-child(odd){
+    background: #e6e6e6;
+}
+
+table tbody tr:hover{
+    background: #999;
+    color: white;
+    cursor: pointer;
+}

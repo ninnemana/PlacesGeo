@@ -1,8 +1,25 @@
 <html>
 <head>
+    <title>Google Places Geolocation API</title>
+    <link rel="stylesheet" href="geo.css" media="all" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=true"></script>
+    <script type="text/javascript" src="geo.js"></script>
 </head>
 <body>
+    <input type="text" id="search_query" placeholder="Enter name of location to search for...." />
+    <input type="submit" id="get_directions" value="GetDirections" />
+    <div id="map"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Vicinity</th>
+                <th>Place Types</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </body>
 </html>
