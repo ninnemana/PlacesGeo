@@ -8,11 +8,12 @@ var latitude;
 var longitude;
 var infowindow;
 var marker;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+
 
 $(document).ready(function(){
     get_location();
-    
-    
     
     $('#search_query').live('keyup',function(){
         clearPlaces();
@@ -52,6 +53,20 @@ $(document).ready(function(){
         infowindow = new google.maps.InfoWindow();
         infowindow.setContent(place.name);
         infowindow.open(map,marker);
+        
+        // Load directions
+        var start = new google.maps.LatLng(latitude,longitude);
+        var end = place.geometry.location;
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function(result, status){
+            if(status == google.maps.DirectionsStatus.OK){
+                directionsDisplay.setDirections(result);   
+            }
+        });
     });
     
     $('tbody').find('tr').live('click',function(){
@@ -72,6 +87,8 @@ function show_map(position){
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    
     lat_lon = new google.maps.LatLng(latitude,longitude);
     var options = {
         center: lat_lon,
@@ -79,6 +96,7 @@ function show_map(position){
         MapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById('map'),options);
+    directionsDisplay.setMap(map);
     
     var home_image = 'gmap_blue_icon.png';
     var marker = new google.maps.Marker({
